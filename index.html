@@ -1,0 +1,2139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ECHS | Early College High School</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #050816;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --bg: #050816;
+            --card: rgba(255, 255, 255, 0.055);
+            --border: rgba(255, 255, 255, 0.12);
+            --text: #ffffff;
+            --muted: #a7afc4;
+            --blue: #4da6ff;
+            --cyan: #35f2ff;
+            --purple: #9b5cff;
+        }
+
+        /* =========================
+           BACKGROUND
+        ========================= */
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle,
+                rgba(77, 166, 255, 0.15),
+                transparent 70%
+            );
+            top: -200px;
+            left: -200px;
+            z-index: -2;
+            animation: floatGlow 10s ease-in-out infinite alternate;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 700px;
+            height: 700px;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle,
+                rgba(155, 92, 255, 0.12),
+                transparent 70%
+            );
+            bottom: -300px;
+            right: -200px;
+            z-index: -2;
+            animation: floatGlow 12s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes floatGlow {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(100px, 80px);
+            }
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 6%;
+            backdrop-filter: blur(15px);
+            background: rgba(5, 8, 22, 0.75);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: white;
+        }
+
+        .logo span {
+            color: var(--cyan);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 6% 80px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 10px 18px;
+            border: 1px solid rgba(53, 242, 255, 0.35);
+            border-radius: 100px;
+            color: var(--cyan);
+            background: rgba(53, 242, 255, 0.05);
+            margin-bottom: 25px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: clamp(4rem, 10vw, 9rem);
+            line-height: 0.9;
+            font-weight: 1000;
+            letter-spacing: -6px;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                var(--cyan),
+                var(--blue),
+                var(--purple),
+                #ffffff
+            );
+
+            background-size: 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            animation: gradientMove 8s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0%;
+            }
+
+            100% {
+                background-position: 300%;
+            }
+        }
+
+        .hero p {
+            max-width: 750px;
+            margin: 30px auto;
+            color: var(--muted);
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 25px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(
+                135deg,
+                var(--blue),
+                var(--purple)
+            );
+
+            color: white;
+            box-shadow: 0 0 30px rgba(77, 166, 255, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 45px rgba(77, 166, 255, 0.45);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+            color: white;
+            background: rgba(255,255,255,0.04);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-4px);
+            border-color: var(--cyan);
+        }
+
+        /* =========================
+           GENERAL SECTIONS
+        ========================= */
+
+        section {
+            padding: 120px 6%;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .section-label {
+            color: var(--cyan);
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            margin-bottom: 25px;
+            letter-spacing: -2px;
+        }
+
+        .section-description {
+            color: var(--muted);
+            max-width: 750px;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            margin-bottom: 50px;
+        }
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .stat {
+            padding: 35px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--card);
+            text-align: center;
+            transition: 0.4s;
+        }
+
+        .stat:hover {
+            transform: translateY(-8px);
+            border-color: rgba(53,242,255,0.4);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+        }
+
+        .stat h3 {
+            font-size: 3rem;
+            color: var(--cyan);
+            margin-bottom: 10px;
+        }
+
+        .stat p {
+            color: var(--muted);
+        }
+
+        /* =========================
+           WHY ECHS
+        ========================= */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .feature {
+            padding: 35px;
+            border-radius: 22px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            transition: 0.4s;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            border-color: rgba(77,166,255,0.5);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+        }
+
+        .feature-number {
+            font-size: 0.8rem;
+            color: var(--cyan);
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* =========================
+           TIMELINE
+        ========================= */
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(
+                var(--cyan),
+                var(--purple)
+            );
+        }
+
+        .timeline-item {
+            width: 50%;
+            padding: 30px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 25px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+        }
+
+        .timeline-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* =========================
+           COMPARISON
+        ========================= */
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .comparison-card {
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid var(--border);
+            background: var(--card);
+        }
+
+        .comparison-card.highlight {
+            border-color: rgba(53,242,255,0.4);
+            box-shadow: 0 0 50px rgba(53,242,255,0.08);
+        }
+
+        .comparison-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+        }
+
+        .comparison-card ul {
+            list-style: none;
+        }
+
+        .comparison-card li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+        }
+
+        .comparison-card.highlight li {
+            color: #ffffff;
+        }
+
+        /* =====================================================
+           UPCOMING EVENTS
+        ===================================================== */
+
+        .events-section {
+            position: relative;
+        }
+
+        .events-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 30px;
+            margin-bottom: 55px;
+        }
+
+        .events-header .section-description {
+            margin-bottom: 0;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .event-card {
+            position: relative;
+            overflow: hidden;
+            padding: 30px;
+            min-height: 330px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.075),
+                    rgba(255,255,255,0.025)
+                );
+
+            border: 1px solid var(--border);
+            border-radius: 25px;
+
+            transition: 0.4s ease;
+        }
+
+        .event-card::before {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: rgba(77,166,255,0.13);
+            filter: blur(55px);
+            top: -120px;
+            right: -100px;
+            transition: 0.5s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(53,242,255,0.45);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+        }
+
+        .event-card:hover::before {
+            transform: scale(1.4);
+        }
+
+        .event-date {
+            position: relative;
+            z-index: 2;
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            width: 65px;
+            height: 70px;
+
+            border-radius: 15px;
+            margin-bottom: 25px;
+
+            background: rgba(53,242,255,0.08);
+            border: 1px solid rgba(53,242,255,0.25);
+        }
+
+        .event-date .month {
+            color: var(--cyan);
+            font-size: 0.7rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .event-date .day {
+            color: white;
+            font-size: 1.6rem;
+            font-weight: 900;
+        }
+
+        .event-card h3 {
+            position: relative;
+            z-index: 2;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .event-card p {
+            position: relative;
+            z-index: 2;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .event-info {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .event-info span {
+            color: #d8deed;
+            font-size: 0.85rem;
+        }
+
+        .event-info strong {
+            color: var(--cyan);
+        }
+
+        .event-status {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            z-index: 3;
+
+            padding: 7px 12px;
+            border-radius: 100px;
+
+            font-size: 0.65rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+
+            color: var(--cyan);
+            background: rgba(53,242,255,0.06);
+            border: 1px solid rgba(53,242,255,0.25);
+        }
+
+        .events-note {
+            margin-top: 40px;
+            padding: 25px;
+            text-align: center;
+
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.025);
+
+            color: var(--muted);
+        }
+
+        /* =========================
+           FUTURE
+        ========================= */
+
+        .future-box {
+            padding: 70px;
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(77,166,255,0.12),
+                    rgba(155,92,255,0.12)
+                );
+
+            border: 1px solid rgba(255,255,255,0.12);
+            text-align: center;
+        }
+
+        .future-box h2 {
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            margin-bottom: 25px;
+        }
+
+        .future-box p {
+            max-width: 750px;
+            margin: auto;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        /* =====================================================
+           AMBASSADORS
+        ===================================================== */
+
+        .ambassadors-section {
+            position: relative;
+        }
+
+        .ambassador-intro {
+            max-width: 800px;
+            margin-bottom: 55px;
+        }
+
+        .ambassador-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .ambassador-card {
+            position: relative;
+            padding: 30px;
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.07),
+                    rgba(255,255,255,0.025)
+                );
+
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: 0.4s ease;
+        }
+
+        .ambassador-card::before {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(53,242,255,0.12);
+            filter: blur(50px);
+            top: -80px;
+            right: -80px;
+            transition: 0.4s;
+        }
+
+        .ambassador-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(53,242,255,0.45);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+        }
+
+        .ambassador-card:hover::before {
+            transform: scale(1.5);
+        }
+
+        .ambassador-photo {
+            width: 125px;
+            height: 125px;
+            border-radius: 50%;
+            margin-bottom: 25px;
+            object-fit: cover;
+            display: block;
+            border: 3px solid rgba(53,242,255,0.5);
+            box-shadow:
+                0 0 25px rgba(53,242,255,0.2);
+        }
+
+        .photo-placeholder {
+            width: 125px;
+            height: 125px;
+            border-radius: 50%;
+            margin-bottom: 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            border: 2px dashed rgba(53,242,255,0.5);
+            color: var(--muted);
+            font-size: 0.75rem;
+        }
+
+        .ambassador-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 7px;
+        }
+
+        .ambassador-role {
+            color: var(--cyan);
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .ambassador-card p {
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .ambassador-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+
+            padding: 7px 11px;
+            border-radius: 100px;
+
+            font-size: 0.7rem;
+            font-weight: bold;
+
+            color: var(--cyan);
+            border: 1px solid rgba(53,242,255,0.25);
+            background: rgba(53,242,255,0.05);
+        }
+
+        .ambassador-cta {
+            margin-top: 50px;
+            padding: 35px;
+            text-align: center;
+
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.03);
+        }
+
+        .ambassador-cta p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .cta {
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: clamp(3rem, 7vw, 7rem);
+            margin-bottom: 25px;
+
+            background: linear-gradient(
+                90deg,
+                white,
+                var(--cyan),
+                white
+            );
+
+            background-size: 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            animation: gradientMove 7s linear infinite;
+        }
+
+        .cta p {
+            color: var(--muted);
+            max-width: 650px;
+            margin: auto auto 35px;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+            padding: 50px 6%;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* =========================
+           SCROLL REVEAL
+        ========================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .events-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .ambassador-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 0.75rem;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even),
+            .timeline-item:nth-child(odd) {
+                width: 100%;
+                left: 0;
+                text-align: left;
+                padding-left: 60px;
+            }
+
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .events-header {
+                display: block;
+            }
+
+            .events-header .section-description {
+                margin-top: 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 15px 4%;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            section {
+                padding: 90px 5%;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ambassador-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .future-box {
+                padding: 40px 25px;
+            }
+
+            .hero h1 {
+                letter-spacing: -3px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         NAVIGATION
+    ===================================================== -->
+
+    <nav>
+
+        <div class="nav-container">
+
+            <div class="logo">
+                <span>ECHS</span>
+            </div>
+
+            <ul>
+                <li><a href="#why">Why ECHS</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#events">Upcoming Events</a></li>
+                <li><a href="#future">Your Future</a></li>
+                <li><a href="#ambassadors">26-27 Ambassadors</a></li>
+		<li><a herf="#cohorts">Cohorts</li>
+            </ul>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         HERO
+    ===================================================== -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                EARLY COLLEGE HIGH SCHOOL
+            </div>
+
+            <h1>
+                START<br>
+                AHEAD.
+            </h1>
+
+            <p>
+                ECHS gives students the opportunity to challenge
+                themselves, explore their future, and start building
+                college and career experience while still in high school.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#why" class="btn btn-primary">
+                    Discover ECHS
+                </a>
+
+                <a href="#events" class="btn btn-secondary">
+                    Upcoming Events
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         STATS
+    ===================================================== -->
+
+    <section>
+
+        <div class="stats">
+
+            <div class="stat reveal">
+                <h3>01</h3>
+                <p>Start your journey early</p>
+            </div>
+
+            <div class="stat reveal">
+                <h3>02</h3>
+                <p>Challenge yourself</p>
+            </div>
+
+            <div class="stat reveal">
+                <h3>03</h3>
+                <p>Explore your future</p>
+            </div>
+
+            <div class="stat reveal">
+                <h3>04</h3>
+                <p>Build your experience</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         WHY ECHS
+    ===================================================== -->
+
+    <section id="why">
+
+        <div class="section-label">
+            WHY ECHS
+        </div>
+
+        <h2 class="section-title">
+            More than<br>
+            just high school.
+        </h2>
+
+        <p class="section-description">
+            Early College High School is designed to give students
+            opportunities to push themselves academically while
+            preparing for what comes next.
+        </p>
+
+        <div class="features">
+
+            <div class="feature reveal">
+
+                <div class="feature-number">
+                    01 / OPPORTUNITY
+                </div>
+
+                <h3>
+                    Think Bigger
+                </h3>
+
+                <p>
+                    ECHS gives students an environment where they can
+                    challenge themselves and explore subjects beyond
+                    the traditional high school experience.
+                </p>
+
+            </div>
+
+
+            <div class="feature reveal">
+
+                <div class="feature-number">
+                    02 / EXPERIENCE
+                </div>
+
+                <h3>
+                    Get Ahead
+                </h3>
+
+                <p>
+                    Students can begin gaining experience with
+                    college-level expectations while still having
+                    the support of their high school community.
+                </p>
+
+            </div>
+
+
+            <div class="feature reveal">
+
+                <div class="feature-number">
+                    03 / FUTURE
+                </div>
+
+                <h3>
+                    Build Your Future
+                </h3>
+
+                <p>
+                    Whether your goal is college, a career, or
+                    discovering something completely new, ECHS can
+                    help you start thinking about your future earlier.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         EXPERIENCE
+    ===================================================== -->
+
+    <section id="experience">
+
+        <div class="section-label">
+            THE EXPERIENCE
+        </div>
+
+        <h2 class="section-title">
+            Your journey<br>
+            starts here.
+        </h2>
+
+        <p class="section-description">
+            ECHS is not just about where you are now.
+            It is about preparing you for where you want to go.
+        </p>
+
+        <div class="timeline">
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-content">
+
+                    <h3>
+                        Step 01 — Explore
+                    </h3>
+
+                    <p>
+                        Discover new subjects, interests, careers,
+                        and possibilities that you may not have
+                        considered before.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-content">
+
+                    <h3>
+                        Step 02 — Challenge
+                    </h3>
+
+                    <p>
+                        Push yourself academically and learn how to
+                        handle new levels of responsibility.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-content">
+
+                    <h3>
+                        Step 03 — Grow
+                    </h3>
+
+                    <p>
+                        Build confidence, skills, friendships,
+                        leadership abilities, and experience.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-content">
+
+                    <h3>
+                        Step 04 — Launch
+                    </h3>
+
+                    <p>
+                        Take what you learned and use it to move
+                        toward your college and career goals.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         COMPARISON
+    ===================================================== -->
+
+    <section>
+
+        <div class="section-label">
+            THE DIFFERENCE
+        </div>
+
+        <h2 class="section-title">
+            Why choose ECHS?
+        </h2>
+
+        <div class="comparison">
+
+            <div class="comparison-card reveal">
+
+                <h3>
+                    Traditional Path
+                </h3>
+
+                <ul>
+
+                    <li>
+                        Focus primarily on high school coursework
+                    </li>
+
+                    <li>
+                        College preparation comes later
+                    </li>
+
+                    <li>
+                        Fewer opportunities to experience
+                        college-level expectations early
+                    </li>
+
+                    <li>
+                        Future planning often starts later
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="comparison-card highlight reveal">
+
+                <h3>
+                    ECHS
+                </h3>
+
+                <ul>
+
+                    <li>
+                        Start preparing for college earlier
+                    </li>
+
+                    <li>
+                        Experience greater academic challenges
+                    </li>
+
+                    <li>
+                        Explore careers and future opportunities
+                    </li>
+
+                    <li>
+                        Build confidence and independence
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         UPCOMING EVENTS
+    ===================================================== -->
+
+    <section id="events" class="events-section">
+
+        <div class="events-header">
+
+            <div>
+
+                <div class="section-label">
+                    WHAT'S NEXT
+                </div>
+
+                <h2 class="section-title">
+                    Upcoming<br>
+                    Events
+                </h2>
+
+            </div>
+
+            <p class="section-description">
+                Stay up to date with what's happening in the ECHS
+                community. Check back here for upcoming events,
+                meetings, activities, and important dates.
+            </p>
+
+        </div>
+
+
+        <div class="events-grid">
+
+
+            <!-- =================================================
+                 EVENT #1
+                 WRITE YOUR EVENT INFORMATION HERE
+            ================================================== -->
+
+            <div class="event-card reveal">
+
+                <div class="event-status">
+                    PLANNING
+                </div>
+
+                <!-- CHANGE MONTH HERE -->
+                <!-- WRITE MONTH HERE -->
+                <div class="event-date">
+
+                    <span class="month">
+                        OCT
+                    </span>
+
+                    <!-- WRITE DAY HERE -->
+                    <span class="day">
+                        N/A
+                    </span>
+
+                </div>
+
+                <!-- WRITE EVENT NAME HERE -->
+                <h3>
+                    TRUNK OR TREAT
+                </h3>
+
+                <!-- WRITE EVENT DESCRIPTION HERE -->
+                <p>
+                    A Halloween night event where elementary, middle, and high school students can come, have fun, and get some candy! Ask your club sponsor if you can help sponsor ECHS!
+                </p>
+
+                <div class="event-info">
+
+                    <!-- WRITE TIME HERE -->
+                    <span>
+                        🕒 <strong>Time:</strong>
+                        N/A
+                    </span>
+
+                    <!-- WRITE LOCATION HERE -->
+                    <span>
+                        📍 <strong>Location:</strong>
+                        PHS Parking Lot
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 EVENT #2
+            ================================================== -->
+
+            <div class="event-card reveal">
+
+                <div class="event-status">
+                    UPCOMING
+                </div>
+
+                <!-- WRITE MONTH HERE -->
+                <div class="event-date">
+
+                    <span class="month">
+                        MONTH
+                    </span>
+
+                    <!-- WRITE DAY HERE -->
+                    <span class="day">
+                        00
+                    </span>
+
+                </div>
+
+                <!-- WRITE EVENT NAME HERE -->
+                <h3>
+                    EVENT NAME HERE
+                </h3>
+
+                <!-- WRITE EVENT DESCRIPTION HERE -->
+                <p>
+                    Write a short description of the event here.
+                    Explain what students can expect or why they
+                    should attend.
+                </p>
+
+                <div class="event-info">
+
+                    <!-- WRITE TIME HERE -->
+                    <span>
+                        🕒 <strong>Time:</strong>
+                        TIME HERE
+                    </span>
+
+                    <!-- WRITE LOCATION HERE -->
+                    <span>
+                        📍 <strong>Location:</strong>
+                        LOCATION HERE
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 EVENT #3
+            ================================================== -->
+
+            <div class="event-card reveal">
+
+                <div class="event-status">
+                    UPCOMING
+                </div>
+
+                <!-- WRITE MONTH HERE -->
+                <div class="event-date">
+
+                    <span class="month">
+                        MONTH
+                    </span>
+
+                    <!-- WRITE DAY HERE -->
+                    <span class="day">
+                        00
+                    </span>
+
+                </div>
+
+                <!-- WRITE EVENT NAME HERE -->
+                <h3>
+                    EVENT NAME HERE
+                </h3>
+
+                <!-- WRITE EVENT DESCRIPTION HERE -->
+                <p>
+                    Write a short description of the event here.
+                    Explain what students can expect or why they
+                    should attend.
+                </p>
+
+                <div class="event-info">
+
+                    <!-- WRITE TIME HERE -->
+                    <span>
+                        🕒 <strong>Time:</strong>
+                        TIME HERE
+                    </span>
+
+                    <!-- WRITE LOCATION HERE -->
+                    <span>
+                        📍 <strong>Location:</strong>
+                        LOCATION HERE
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 EVENT #4
+            ================================================== -->
+
+            <div class="event-card reveal">
+
+                <div class="event-status">
+                    UPCOMING
+                </div>
+
+                <!-- WRITE MONTH HERE -->
+                <div class="event-date">
+
+                    <span class="month">
+                        MONTH
+                    </span>
+
+                    <!-- WRITE DAY HERE -->
+                    <span class="day">
+                        00
+                    </span>
+
+                </div>
+
+                <!-- WRITE EVENT NAME HERE -->
+                <h3>
+                    EVENT NAME HERE
+                </h3>
+
+                <!-- WRITE EVENT DESCRIPTION HERE -->
+                <p>
+                    Write a short description of the event here.
+                    Explain what students can expect or why they
+                    should attend.
+                </p>
+
+                <div class="event-info">
+
+                    <!-- WRITE TIME HERE -->
+                    <span>
+                        🕒 <strong>Time:</strong>
+                        TIME HERE
+                    </span>
+
+                    <!-- WRITE LOCATION HERE -->
+                    <span>
+                        📍 <strong>Location:</strong>
+                        LOCATION HERE
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 EVENT #5
+            ================================================== -->
+
+            <div class="event-card reveal">
+
+                <div class="event-status">
+                    UPCOMING
+                </div>
+
+                <!-- WRITE MONTH HERE -->
+                <div class="event-date">
+
+                    <span class="month">
+                        MONTH
+                    </span>
+
+                    <!-- WRITE DAY HERE -->
+                    <span class="day">
+                        00
+                    </span>
+
+                </div>
+
+                <!-- WRITE EVENT NAME HERE -->
+                <h3>
+                    EVENT NAME HERE
+                </h3>
+
+                <!-- WRITE EVENT DESCRIPTION HERE -->
+                <p>
+                    Write a short description of the event here.
+                    Explain what students can expect or why they
+                    should attend.
+                </p>
+
+                <div class="event-info">
+
+                    <!-- WRITE TIME HERE -->
+                    <span>
+                        🕒 <strong>Time:</strong>
+                        TIME HERE
+                    </span>
+
+                    <!-- WRITE LOCATION HERE -->
+                    <span>
+                        📍 <strong>Location:</strong>
+                        LOCATION HERE
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 EVENT #6
+            ================================================== -->
+
+            <div class="event-card reveal">
+
+                <div class="event-status">
+                    UPCOMING
+                </div>
+
+                <!-- WRITE MONTH HERE -->
+                <div class="event-date">
+
+                    <span class="month">
+                        MONTH
+                    </span>
+
+                    <!-- WRITE DAY HERE -->
+                    <span class="day">
+                        00
+                    </span>
+
+                </div>
+
+                <!-- WRITE EVENT NAME HERE -->
+                <h3>
+                    EVENT NAME HERE
+                </h3>
+
+                <!-- WRITE EVENT DESCRIPTION HERE -->
+                <p>
+                    Write a short description of the event here.
+                    Explain what students can expect or why they
+                    should attend.
+                </p>
+
+                <div class="event-info">
+
+                    <!-- WRITE TIME HERE -->
+                    <span>
+                        🕒 <strong>Time:</strong>
+                        TIME HERE
+                    </span>
+
+                    <!-- WRITE LOCATION HERE -->
+                    <span>
+                        📍 <strong>Location:</strong>
+                        LOCATION HERE
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="events-note reveal">
+
+            More events and important dates will be added throughout
+            the 2026–27 school year.
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FUTURE
+    ===================================================== -->
+
+    <section id="future">
+
+        <div class="future-box reveal">
+
+            <div class="section-label">
+                YOUR FUTURE
+            </div>
+
+            <h2>
+                Don't wait<br>
+                to start.
+            </h2>
+
+            <p>
+                Your future is not something that begins after
+                graduation. It starts with the decisions you make
+                today, the opportunities you take, and the people
+                you surround yourself with.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         2026-27 ECHS AMBASSADORS
+    ===================================================== -->
+
+    <section id="ambassadors" class="ambassadors-section">
+
+        <div class="section-label">
+            MEET THE TEAM
+        </div>
+
+        <h2 class="section-title">
+            2026–27 ECHS<br>
+            Ambassadors
+        </h2>
+
+        <p class="section-description ambassador-intro">
+            Meet the students representing the ECHS community
+            throughout the 2026–27 school year.
+        </p>
+
+
+        <div class="ambassador-grid">
+
+
+            <!-- =================================================
+                 AMBASSADOR #1
+            ================================================== -->
+
+            <div class="ambassador-card reveal">
+
+                <div class="ambassador-badge">
+                    2026–27
+                </div>
+
+                <!--
+                    TO ADD A PHOTO:
+
+                    Replace the placeholder with:
+
+                    <img
+                        src="images/ambassador1.jpg"
+                        class="ambassador-photo"
+                        alt="Ambassador Name"
+                    >
+                -->
+
+                <img
+		     src="images/PHS DEVLEAP.png"
+		     class="ambassador-photo"
+		     alt="KASHINATHAN SABARISH"
+		>
+
+                <!-- WRITE NAME HERE -->
+                <h3>
+                    KASHINATHAN SABARISH NAIR
+                </h3>
+
+                <!-- WRITE ROLE HERE -->
+                <div class="ambassador-role">
+                    ECHS STUDENT AMBASSADOR
+                </div>
+
+                <!-- WRITE BIO HERE -->
+                <p>
+                    Cohort 1. Responsible for making this site for representing ECHS as a whole. 
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 AMBASSADOR #2
+            ================================================== -->
+
+            <div class="ambassador-card reveal">
+
+                <div class="ambassador-badge">
+                    2026–27
+                </div>
+
+                <div class="photo-placeholder">
+                    PHOTO
+                </div>
+
+                <!-- WRITE NAME HERE -->
+                <h3>
+                    AARON DEAMER
+                </h3>
+
+                <!-- WRITE ROLE HERE -->
+                <div class="ambassador-role">
+                    ECHS STUDENT AMBASSADOR
+                </div>
+
+                <!-- WRITE BIO HERE -->
+                <p>
+                    Cohort 1. Co-developer of the site and a leader for the Trunk or Treat event as well as graphic designer for the T-Shirt.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 AMBASSADOR #3
+            ================================================== -->
+
+            <div class="ambassador-card reveal">
+
+                <div class="ambassador-badge">
+                    2026–27
+                </div>
+
+                <div class="photo-placeholder">
+                    PHOTO
+                </div>
+
+                <!-- WRITE NAME HERE -->
+                <h3>
+                    TANISHKA JAWARE
+                </h3>
+
+                <!-- WRITE ROLE HERE -->
+                <div class="ambassador-role">
+                    ECHS STUDENT AMBASSADOR
+                </div>
+
+                <!-- WRITE BIO HERE -->
+                <p>
+                    Write a short bio about this ambassador here.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 AMBASSADOR #4
+            ================================================== -->
+
+            <div class="ambassador-card reveal">
+
+                <div class="ambassador-badge">
+                    2026–27
+                </div>
+
+                <div class="photo-placeholder">
+                    PHOTO
+                </div>
+
+                <!-- WRITE NAME HERE -->
+                <h3>
+                    ARUSHI ZAMBRE
+                </h3>
+
+                <!-- WRITE ROLE HERE -->
+                <div class="ambassador-role">
+                    ECHS STUDENT AMBASSADOR
+                </div>
+
+                <!-- WRITE BIO HERE -->
+                <p>
+                    Write a short bio about this ambassador here.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 AMBASSADOR #5
+            ================================================== -->
+
+            <div class="ambassador-card reveal">
+
+                <div class="ambassador-badge">
+                    2026–27
+                </div>
+
+                <div class="photo-placeholder">
+                    PHOTO
+                </div>
+
+                <!-- WRITE NAME HERE -->
+                <h3>
+                    JOSHUA KORPI
+                </h3>
+
+                <!-- WRITE ROLE HERE -->
+                <div class="ambassador-role">
+                    ECHS STDENT AMBASSADOR
+                </div>
+
+                <!-- WRITE BIO HERE -->
+                <p>
+                    Write a short bio about this ambassador here.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 AMBASSADOR #6
+            ================================================== -->
+
+            <div class="ambassador-card reveal">
+
+                <div class="ambassador-badge">
+                    2026–27
+                </div>
+
+                <div class="photo-placeholder">
+                    PHOTO
+                </div>
+
+                <!-- WRITE NAME HERE -->
+                <h3>
+                    WRITE NAME HERE
+                </h3>
+
+                <!-- WRITE ROLE HERE -->
+                <div class="ambassador-role">
+                    ECHS AMBASSADOR
+                </div>
+
+                <!-- WRITE BIO HERE -->
+                <p>
+                    Write a short bio about this ambassador here.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="ambassador-cta reveal">
+
+            <p>
+                The 2026–27 Ambassador Team represents the students,
+                ideas, and opportunities that make the ECHS community
+                unique.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ======================================================
+	 COHORTS
+    ========================================================= -->
+    <section id="cohorts">
+
+        <div class="section-label">
+            THE STUDENTS
+        </div>
+
+        <h2 class="section-title">
+            Listen to the words<br>
+            of some of the cohorts at PHS.
+        </h2>
+
+        <p class="section-description">
+	    The Cohorts would like to explain ECHS and/or why they like it. Let's hear their "words of wisdom".
+        </p>
+
+        <div class="features">
+
+            <div class="feature reveal">
+
+                <div class="feature-number">
+                    COHORT SECTION HERE
+                </div>
+
+                <h3>
+                    STUDENT NAME HERE
+                </h3>
+
+                <p>
+                    QUOTE HERE
+                </p>
+
+            </div>
+
+
+            <div class="feature reveal">
+
+                <div class="feature-number">
+                    02 / EXPERIENCE
+                </div>
+
+                <h3>
+                    Get Ahead
+                </h3>
+
+                <p>
+                    Students can begin gaining experience with
+                    college-level expectations while still having
+                    the support of their high school community.
+                </p>
+
+            </div>
+
+
+            <div class="feature reveal">
+
+                <div class="feature-number">
+                    03 / FUTURE
+                </div>
+
+                <h3>
+                    Build Your Future
+                </h3>
+
+                <p>
+                    Whether your goal is college, a career, or
+                    discovering something completely new, ECHS can
+                    help you start thinking about your future earlier.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FINAL CTA
+    ===================================================== -->
+
+    <section class="cta">
+
+        <div class="section-label">
+            READY?
+        </div>
+
+        <h2>
+            BUILD<br>
+            YOUR FUTURE.
+        </h2>
+
+        <p>
+            ECHS is an opportunity to challenge yourself,
+            discover what you are capable of, and take your
+            next step toward the future.
+        </p>
+
+        <a href="#why" class="btn btn-primary">
+            Explore ECHS
+        </a>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer>
+        <p>
+            © 2026 ECHS • Early College High School
+        </p>
+
+        <br>
+
+        <p>
+            <strong>Special Thanks To:</strong>
+            Luc Tran, Elijah Ramos, and Kim Winn
+        </p>
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+        /* =========================
+           SCROLL REVEAL
+        ========================= */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+        const revealObserver =
+            new IntersectionObserver(
+                (entries) => {
+
+                    entries.forEach((entry) => {
+
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("active");
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.15
+                }
+            );
+
+
+        revealElements.forEach((element) => {
+            revealObserver.observe(element);
+        });
+
+
+        /* =========================
+           MOUSE GLOW
+        ========================= */
+
+        document.addEventListener("mousemove", (event) => {
+
+            const x = event.clientX;
+            const y = event.clientY;
+
+            document.body.style.background =
+                `radial-gradient(
+                    circle at ${x}px ${y}px,
+                    rgba(77,166,255,0.035),
+                    #050816 500px
+                )`;
+
+        });
+
+    </script>
+
+</body>
+</html>
+
+
